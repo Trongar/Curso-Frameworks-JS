@@ -1,0 +1,9 @@
+<app-subheader>Página de pruebas</app-subheader>
+<div *ngIf="nombre && apellido">
+    <h2>El nombre es: {{nombre}}</h2>
+    <h2>El apellido es: {{apellido}}</h2>
+</div>
+<div *ngIf="!nombre || !apellido">
+    <h2>no hay parámetros para mostrar</h2>
+</div>
+<button (click)="redirection()">Llevame al formulario</button>
