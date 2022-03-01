@@ -1,32 +1,43 @@
-<app-subheader>Películas</app-subheader>
-<h2>{{ titulo }}</h2>
-<button (click)="cambiarTitulo()">Pulsame</button>
-<hr />
-<h2>Mostrar primera pelicula</h2>
-{{ peliculas[0].title }}
-<hr />
-<h2>Numero de peliculas</h2>
-<div *ngIf="peliculas.length <= 3">Hay pocas peliculas</div>
-<div *ngIf="peliculas.length > 3">Hay muchas peliculas</div>
-{{ peliculas.length }}
-<hr />
-<h2 class="subheader">Listado de peliculas</h2>
-<div id="articles" *ngIf="peliculas">
-  <article class="article-item" *ngFor="let pelicula of peliculas">
-    <div class="image-wrap">
-      <img
-        src="{{pelicula.image}}"
-        alt="{{pelicula.title}}"
-      />
+<app-slider 
+  [nombre]="'Películas'"
+  [size]="'small'"
+  ></app-slider>
+<div class="center">
+  <section id="content">
+    <div id="favorita" *ngIf="favorita">
+      <h2 class="subheader">
+        Pelicula Favorita
+      </h2>
+      <h4>
+
+        {{favorita.title | lowercase }}
+      </h4>
+      <h4>
+        {{favorita.year | espar}}
+      </h4>
     </div>
-    
-    <h2>{{pelicula.title}}</h2>
-    <span class="date"> Hace 5 minutos </span>
-    <span class="year" [style.background]="pelicula.year > 2016 ? 'green':'red' ">
-        {{pelicula.year}}
-    </span>
-    <a href="#">Leer más</a>
-    
-    <div class="clearfix"></div>
-</article>
+    <!-- <app-subheader>Películas</app-subheader>
+    <h2>{{ titulo }}</h2>
+    <button (click)="cambiarTitulo()">Pulsame</button>
+    <hr />
+    <h2>Mostrar primera pelicula</h2>
+    {{ peliculas[0].title }}
+    <hr />
+    <h2>Numero de peliculas</h2>
+    <div *ngIf="peliculas.length <= 3">Hay pocas peliculas</div>
+    <div *ngIf="peliculas.length > 3">Hay muchas peliculas</div>
+    {{ peliculas.length }}
+    <hr /> -->
+    <h2 class="subheader">Listado de peliculas</h2>
+    <div id="articles" *ngIf="peliculas">
+      <article class="article-item" *ngFor="let pelicula of peliculas">
+        <app-pelicula
+          [pelicula]="pelicula"
+          (marcarFavorito)="mostrarFavorito($event)"
+        ></app-pelicula>
+      </article>
+    </div>
+  </section>
+  <app-sidebar></app-sidebar>
+  <div class="clearfix"></div>
 </div>
